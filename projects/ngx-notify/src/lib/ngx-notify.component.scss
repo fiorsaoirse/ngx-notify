@@ -1,0 +1,114 @@
+.ngx-notify-container {
+  position: fixed;
+  right: .5em;
+  left: .5em;
+
+  /* Bootstrap 4 alert alertClasses */
+  .alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+
+  .alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+
+  .alert-info {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+  }
+
+  .fade-out {
+    animation: fadeOut linear;
+    -webkit-animation: fadeOut linear;
+    -moz-animation: fadeOut linear;
+    -o-animation: fadeOut linear;
+    animation-fill-mode: forwards;
+  }
+
+  .ngx-notify-close {
+    cursor: pointer;
+    display: flex;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    background: url("../../assets/icons/close.svg") no-repeat;
+  }
+
+  .ngx-notify-close.ngx-notify-hidden {
+    display: none;
+  }
+}
+
+.ngx-notify-container.top {
+  top: 0.5em;
+}
+
+.ngx-notify-container.bottom {
+  bottom: 0.5em;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
