@@ -1,6 +1,13 @@
 {
   "name": "ngx-notify",
   "version": "0.0.1",
+  "author": "Maria Kovsharova",
+  "keywords": [
+    "angular",
+    "notification",
+    "customizable",
+    "library"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
