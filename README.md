@@ -1,7 +1,7 @@
 This is simple Angular Library that allows you to create notification at top or at bottom of your screen.
 
 ###Installation
-1. Run `npm i ngx-notify --save` in terminal
+1. Run `npm i another-one-notification --save` in terminal
 2. Add `NgxNotifyModule` to your application module in **imports** section.
 
 ###Usage

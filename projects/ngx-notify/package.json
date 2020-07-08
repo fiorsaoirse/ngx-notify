@@ -1,6 +1,13 @@
 {
-  "name": "ngx-notify",
+  "name": "another-one-notification",
   "version": "0.0.1",
+  "author": "Maria Kovsharova",
+  "keywords": [
+    "angular",
+    "notification",
+    "customizable",
+    "library"
+  ],
   "peerDependencies": {
     "@angular/common": "^9.1.11",
     "@angular/core": "^9.1.11"
