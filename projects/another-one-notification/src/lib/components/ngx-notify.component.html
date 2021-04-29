@@ -1,0 +1,14 @@
+<div class="ngx-notify-content"
+     #contentContainer>
+    <ng-container *ngIf="isTemplate(content); else defaultTemplate">
+        <ng-template *ngTemplateOutlet="content"></ng-template>
+    </ng-container>
+    <ng-container *ngIf="manualClose">
+        <span class="ngx-notify-close"
+              (click)="close()"></span>
+    </ng-container>
+</div>
+
+<ng-template #defaultTemplate>
+    {{ content || ''}}
+</ng-template>

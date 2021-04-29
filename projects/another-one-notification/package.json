@@ -1,0 +1,19 @@
+{
+  "name": "another-one-notification",
+  "version": "0.1.0",
+  "author": "Maria Kovsharova",
+  "keywords": [
+    "angular",
+    "notification",
+    "customizable",
+    "library"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^11.2.12",
+    "@angular/core": "^11.2.12",
+    "rxjs": "^6.6.7"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
