@@ -1,5 +1,5 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { NgxNotifyService, NgxNotifyType } from 'another-one-notification';
+import { NgxNotifyService, NgxNotifyType,NgxNotifyConfig } from 'another-one-notification';
 
 @Component({
   selector: 'app-root',
@@ -31,18 +31,18 @@ export class AppComponent {
   public ngOnInit(): void {
   }
 
-  private getMethodByType(type: NgxNotifyType): (content: any, config?: any) => void | never {
+  private getMethodByType(type: NgxNotifyType): (content: string | TemplateRef<any>, config?: NgxNotifyConfig) => void | never {
       switch (type) {
           case NgxNotifyType.SUCCESS:
               return this.ngxNotifyService.createSuccessNotification.bind(this.ngxNotifyService);
           case NgxNotifyType.DANGER:
-              return this.ngxNotifyService.createErrorNotification;
+              return this.ngxNotifyService.createErrorNotification.bind(this.ngxNotifyService);
           case NgxNotifyType.INFO:
-              return this.ngxNotifyService.createInfoNotification;
+              return this.ngxNotifyService.createInfoNotification.bind(this.ngxNotifyService);
           case NgxNotifyType.WARNING:
-              return this.ngxNotifyService.createWarningNotification;
+              return this.ngxNotifyService.createWarningNotification.bind(this.ngxNotifyService);
           default:
-              return this.ngxNotifyService.createCustomNotification;
+              return this.ngxNotifyService.createCustomNotification.bind(this.ngxNotifyService);
       }
   }
 
@@ -53,8 +53,9 @@ export class AppComponent {
       method(message);
   }
 
-  public showTemplateNotification(): void {
-      console.log('boo');
+  public showTemplateNotification(type: NgxNotifyType): void {
+    const method = this.getMethodByType(type);
+    method(this.template);
   }
 
   private getRandomIndex(): number {

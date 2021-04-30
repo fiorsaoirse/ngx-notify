@@ -1,5 +1,21 @@
 @use "sass:map";
 
+$success100: #155724;
+$success10: #d4edda;
+$success05: #c3e6cb;
+
+$danger100: #721c24;
+$danger10: #f8d7da;
+$danger05: #f5c6cb;
+
+$warning100: #856404;
+$warning10: #fff3cd;
+$warning05: #ffeeba;
+
+$info100: #004085;
+$info10: #cce5ff;
+$info05: #b8daff;
+
 @mixin ngx-notify-style($name, $colors) {
   .ngx-notify-content {
     &.ngx-notify-content-#{name} {
@@ -10,127 +26,127 @@
   }
 }
 
-$successColor: #155724;
-
 .ngx-notify-container {
-  position: fixed;
-  right: .5em;
-  left: .5em;
-
-  .ngx-notify-content {
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    display: flex;
-    align-items: center;
-
-    // TODO: использовать миксин функцию
+    position: fixed;
+  
+    .ngx-notify-content {
+      position: relative;
+      padding: .75rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      display: flex;
+      align-items: center;
+    }
+  
+    .fade-out {
+      animation: fadeOut linear;
+      -webkit-animation: fadeOut linear;
+      -moz-animation: fadeOut linear;
+      -o-animation: fadeOut linear;
+      animation-fill-mode: forwards;
+    }
+  
+    .ngx-notify-close {
+      cursor: pointer;
+      display: flex;
+      margin-left: auto;
+      width: 20px;
+      height: 20px;
+      // background: url("../../assets/icons/close.svg") no-repeat;
+    }
+  
+    .ngx-notify-close.ngx-notify-hidden {
+      display: none;
+    }
   }
-
-  .alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
+  
+  .ngx-notify-container.top {
+    top: 0.5em;
   }
-
-  .alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
+  
+  .ngx-notify-container.bottom {
+    bottom: 0.5em;
   }
-
-  .alert-warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
+  
+  @include ngx-notify-style(
+    "success",
+    (
+      "color": $success100,
+      "background": $success10,
+      "border": $success05
+    )
+  );
+  
+  @include ngx-notify-style(
+    "danger",
+    (
+      "color": $danger100,
+      "background": $danger10,
+      "border": $danger05
+    )
+  );
+  
+  @include ngx-notify-style(
+    "warning",
+    (
+      "color": $warning100,
+      "background": $warning10,
+      "border": $warning05
+    )
+  );
+  
+  @include ngx-notify-style(
+    "info",
+    (
+      "color": $info100,
+      "background": $info10,
+      "border": $info05
+    )
+  );
+  
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
   }
-
-  .alert-info {
-    color: #004085;
-    background-color: #cce5ff;
-    border-color: #b8daff;
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
   }
-
-  .fade-out {
-    animation: fadeOut linear;
-    -webkit-animation: fadeOut linear;
-    -moz-animation: fadeOut linear;
-    -o-animation: fadeOut linear;
-    animation-fill-mode: forwards;
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
   }
-
-  .ngx-notify-close {
-    cursor: pointer;
-    display: flex;
-    margin-left: auto;
-    width: 20px;
-    height: 20px;
-    // background: url("../../assets/icons/close.svg") no-repeat;
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
   }
-
-  .ngx-notify-close.ngx-notify-hidden {
-    display: none;
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
   }
-}
-
-.ngx-notify-container.top {
-  top: 0.5em;
-}
-
-.ngx-notify-container.bottom {
-  bottom: 0.5em;
-}
-
-@include ngx-notify-style(
-  "success",
-  (
-    "color": $successColor,
-  )
-);
-
-@keyframes fadeOut {
-  0% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
-
-@-moz-keyframes fadeOut {
-  0% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
-
-@-webkit-keyframes fadeOut {
-  0% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
-
-@-o-keyframes fadeOut {
-  0% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
-
-@-ms-keyframes fadeOut {
-  0% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
+  

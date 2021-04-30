@@ -1,7 +1,10 @@
+import { DOCUMENT } from '@angular/common';
 import {
     ApplicationRef,
     ComponentFactoryResolver,
     ComponentRef,
+    EmbeddedViewRef,
+    Inject,
     Injectable,
     Injector,
     TemplateRef,
@@ -12,10 +15,10 @@ import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
 import { NgxNotifyConfig } from '../contracts/ngx-notify.interface';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgxNotifyService {
-    private readonly defaultTimeout: number;
+    private readonly DEFAULT_TIMEOUT: number;
 
     private currentNotification: ComponentRef<NgxNotifyComponent> | null;
 
@@ -23,33 +26,39 @@ export class NgxNotifyService {
 
     private timerId?: number;
 
+    private static getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
+        const [node] = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes;
+        return node as HTMLElement;
+    }
+
     constructor(
         private readonly injector: Injector,
         private readonly applicationRef: ApplicationRef,
-        private readonly componentFactoryResolver: ComponentFactoryResolver
+        private readonly componentFactoryResolver: ComponentFactoryResolver,
+        @Inject(DOCUMENT) private readonly document: Document
     ) {
         this.currentNotification = null;
         this.currentNotificationSubscription = null;
-        this.defaultTimeout = 8000;
+        this.DEFAULT_TIMEOUT = 8000;
     }
 
-    public createSuccessNotification(content: string | TemplateRef<any>, config: NgxNotifyConfig): void {
+    public createSuccessNotification(content: string | TemplateRef<any>, config?: NgxNotifyConfig): void {
         this.createNotification(content, NgxNotifyType.SUCCESS, config);
     }
 
-    public createWarningNotification(content: string | TemplateRef<any>, config: NgxNotifyConfig): void {
+    public createWarningNotification(content: string | TemplateRef<any>, config?: NgxNotifyConfig): void {
         this.createNotification(content, NgxNotifyType.WARNING, config);
     }
 
-    public createErrorNotification(content: string | TemplateRef<any>, config: NgxNotifyConfig): void {
+    public createErrorNotification(content: string | TemplateRef<any>, config?: NgxNotifyConfig): void {
         this.createNotification(content, NgxNotifyType.DANGER, config);
     }
 
-    public createInfoNotification(content: string | TemplateRef<any>, config: NgxNotifyConfig): void {
+    public createInfoNotification(content: string | TemplateRef<any>, config?: NgxNotifyConfig): void {
         this.createNotification(content, NgxNotifyType.INFO, config);
     }
 
-    public createCustomNotification(content: string | TemplateRef<any>, config: NgxNotifyConfig): void {
+    public createCustomNotification(content: string | TemplateRef<any>, config?: NgxNotifyConfig): void {
         this.createNotification(content, NgxNotifyType.CUSTOM, config);
     }
 
@@ -58,7 +67,7 @@ export class NgxNotifyService {
         type: NgxNotifyType,
         config?: NgxNotifyConfig
     ): void {
-        const timeout = config?.timeout ?? this.defaultTimeout;
+        const timeout = config?.timeout ?? this.DEFAULT_TIMEOUT;
         const manual = config?.manualClose;
 
         // For current - ony one notification can be shown
@@ -83,9 +92,7 @@ export class NgxNotifyService {
         }
 
         this.currentNotificationSubscription = this.currentNotification.instance.destroy.subscribe(() => {
-            console.log('currentNotification destroy');
-
-            this.applicationRef.detachView(this.currentNotification!.hostView);
+             this.applicationRef.detachView(this.currentNotification!.hostView);
             if (this.timerId) {
                 clearTimeout(this.timerId);
             }
@@ -96,9 +103,11 @@ export class NgxNotifyService {
 
         if (!manual) {
             this.timerId = window.setTimeout(() => {
-                console.log('timeout');
                 this.currentNotification?.destroy();
             }, timeout);
         }
+
+        const rootNode = NgxNotifyService.getComponentRootNode(this.currentNotification);
+        this.document.body.appendChild(rootNode);
     }
 }

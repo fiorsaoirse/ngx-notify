@@ -9,6 +9,7 @@ import {
     Renderer2,
     TemplateRef,
     ViewChild,
+    ViewEncapsulation,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
@@ -16,8 +17,8 @@ import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
 @Component({
     selector: 'ngx-notify',
     templateUrl: './ngx-notify.component.html',
-    styleUrls: ['./ngx-notify.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
     // small / medium / large ?
@@ -49,12 +50,12 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.renderer.addClass(this.elementRef, 'ngx-notify-container');
+        this.renderer.addClass(this.elementRef.nativeElement, 'ngx-notify-container');
     }
 
     public ngAfterViewInit(): void {
         const colorClass = NgxNotifyComponent.getColorClass(this.type);
-        this.renderer.addClass(this.contentContainer, colorClass);
+        this.renderer.addClass(this.contentContainer.nativeElement, colorClass);
     }
 
     public ngOnDestroy(): void {
@@ -66,7 +67,7 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public isTemplate(content: string | TemplateRef<any>): content is TemplateRef<any> {
-        return (!!(content as TemplateRef<any>).elementRef);
+        return !!(content as TemplateRef<any>).elementRef;
     }
 
     private destroyComponent(): void {
