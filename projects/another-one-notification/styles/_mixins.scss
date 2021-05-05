@@ -1,0 +1,21 @@
+@use "sass:map";
+
+@mixin ngx-notify-style($name, $colors) {
+  .ngx-notify-content {
+    &.ngx-notify-content-#{$name} {
+      color: map.get($colors, "color");
+      background-color: map.get($colors, "background");
+      border-color: map.get($colors, "border");
+    }
+  }
+}
+
+@mixin ngx-notify-position($position) {
+  .ngx-notify-container {
+    &.ngx-notify-container-#{$position} {
+      #{$position}: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+}

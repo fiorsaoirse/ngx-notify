@@ -92,7 +92,7 @@ export class NgxNotifyService {
         }
 
         this.currentNotificationSubscription = this.currentNotification.instance.destroy.subscribe(() => {
-             this.applicationRef.detachView(this.currentNotification!.hostView);
+            this.applicationRef.detachView(this.currentNotification!.hostView);
             if (this.timerId) {
                 clearTimeout(this.timerId);
             }
@@ -101,11 +101,11 @@ export class NgxNotifyService {
             this.currentNotificationSubscription = null;
         });
 
-        if (!manual) {
-            this.timerId = window.setTimeout(() => {
-                this.currentNotification?.destroy();
-            }, timeout);
-        }
+        // if (!manual) {
+        //     this.timerId = window.setTimeout(() => {
+        //         this.currentNotification?.destroy();
+        //     }, timeout);
+        // }
 
         const rootNode = NgxNotifyService.getComponentRootNode(this.currentNotification);
         this.document.body.appendChild(rootNode);

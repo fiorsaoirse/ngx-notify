@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "build-lib": "ng build another-one-notification",
+    "build-lib-styles": "scss-bundle -e \"./projects/another-one-notification/src/lib/styles/main.scss\" -o \"./dist/another-one-notification/styles/main.scss\"",
     "build-lib:watch": "ng build another-one-notification --watch",
+    "build-lib-styles:watch": "scss-bundle -e \"./projects/another-one-notification/src/lib/styles/main.scss\" -o \"./dist/another-one-notification/styles/main.scss\" -w \"./projects/another-one-notification/src/lib/styles\"",
     "test": "ng test",
     "e2e": "ng e2e",
     "prettier-format": "prettier --config .prettierrc projects/**/*.ts --write",
@@ -14,7 +16,8 @@
     "lint:src": "node node_modules/eslint/bin/eslint \"{projects,src}/**/*.{ts,tsx}\"",
     "lint:src:fix": "npm run lint:src -- --fix",
     "lint:ts": "tsc --noEmit",
-    "lint:ts:w": "npm run lint:ts -- --watch"
+    "lint:ts:w": "npm run lint:ts -- --watch",
+    "lint:scss": "stylelint ./projects/**/*.scss"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +40,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "css-loader": "^5.0.1",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
@@ -53,6 +57,10 @@
     "prettier": "^2.2.1",
     "protractor": "~7.0.0",
     "scss-bundle": "^3.1.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.19.0",
     "ts-node": "~8.3.0",
     "typescript": "~4.1.5"
   }

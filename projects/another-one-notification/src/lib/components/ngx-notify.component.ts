@@ -17,8 +17,9 @@ import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
 @Component({
     selector: 'ngx-notify',
     templateUrl: './ngx-notify.component.html',
+    // styleUrls: ['./ngx-notify.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
+    // encapsulation: ViewEncapsulation.None
 })
 export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
     // small / medium / large ?
@@ -41,6 +42,10 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
         return `ngx-notify-content-${type}`;
     }
 
+    private static getPositionClass(position: NgxNotifyPosition): string {
+        return `ngx-notify-container-${position}`;
+    }
+
     constructor(private readonly elementRef: ElementRef, private readonly renderer: Renderer2) {
         this._destroy = new Subject<void>();
     }
@@ -50,7 +55,9 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnInit(): void {
+        const positionClass = NgxNotifyComponent.getPositionClass(this.position);
         this.renderer.addClass(this.elementRef.nativeElement, 'ngx-notify-container');
+        this.renderer.addClass(this.elementRef.nativeElement, positionClass);
     }
 
     public ngAfterViewInit(): void {

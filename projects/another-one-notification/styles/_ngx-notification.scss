@@ -1,38 +1,14 @@
-@use "sass:map";
-
-$success100: #155724;
-$success10: #d4edda;
-$success05: #c3e6cb;
-
-$danger100: #721c24;
-$danger10: #f8d7da;
-$danger05: #f5c6cb;
-
-$warning100: #856404;
-$warning10: #fff3cd;
-$warning05: #ffeeba;
-
-$info100: #004085;
-$info10: #cce5ff;
-$info05: #b8daff;
-
-@mixin ngx-notify-style($name, $colors) {
-  .ngx-notify-content {
-    &.ngx-notify-content-#{name} {
-      color: map.get($colors, "color");
-      background-color: map.get($colors, "background");
-      border-color: map.get($colors, "border");
-    }
-  }
-}
+@import "variables";
+@import "mixins";
 
 .ngx-notify-container {
     position: fixed;
+    width: 100%;
   
     .ngx-notify-content {
       position: relative;
+      margin: .75rem 1rem;
       padding: .75rem 1.25rem;
-      margin-bottom: 1rem;
       border: 1px solid transparent;
       border-radius: .25rem;
       display: flex;
@@ -59,14 +35,6 @@ $info05: #b8daff;
     .ngx-notify-close.ngx-notify-hidden {
       display: none;
     }
-  }
-  
-  .ngx-notify-container.top {
-    top: 0.5em;
-  }
-  
-  .ngx-notify-container.bottom {
-    bottom: 0.5em;
   }
   
   @include ngx-notify-style(
@@ -104,6 +72,9 @@ $info05: #b8daff;
       "border": $info05
     )
   );
+
+  @include ngx-notify-position('top');
+  @include ngx-notify-position('bottom');
   
   @keyframes fadeOut {
     0% {

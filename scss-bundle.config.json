@@ -1,0 +1,9 @@
+{
+    "bundlerOptions": {
+        "entryFile": "./src/styles/main.scss",
+        "rootDir": "./src/styles/",
+        "outFile": "./dist/another-one-notification/styles/another-one-notification.scss",
+        "ignoreImports": ["~@angular/.*"],
+        "logLevel": "silent"
+    }
+  }

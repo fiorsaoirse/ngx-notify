@@ -8,7 +8,5 @@ export enum NgxNotifyType {
 
 export enum NgxNotifyPosition {
     TOP = 'top',
-    BOTTOM = 'bottom',
-    LEFT = 'left',
-    RIGHT = 'right',
+    BOTTOM = 'bottom'
 }
