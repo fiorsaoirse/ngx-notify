@@ -7,10 +7,10 @@
   
     .ngx-notify-content {
       position: relative;
-      margin: .75rem 1rem;
-      padding: .75rem 1.25rem;
+      margin: $ngx-notify-content-margin;
+      padding: $ngx-notify-content-padding;
       border: 1px solid transparent;
-      border-radius: .25rem;
+      border-radius: $ngx-notify-border-radius;
       display: flex;
       align-items: center;
     }
@@ -27,49 +27,48 @@
       cursor: pointer;
       display: flex;
       margin-left: auto;
-      width: 20px;
-      height: 20px;
-      // background: url("../../assets/icons/close.svg") no-repeat;
-    }
-  
-    .ngx-notify-close.ngx-notify-hidden {
-      display: none;
+            
+      .ngx-notify-close-default-icon {
+        width: $ngx-notify-close-icon-width;
+        height: $ngx-notify-close-icon-height;
+        background: url("../icons/close.svg") no-repeat;
+      }
     }
   }
   
   @include ngx-notify-style(
     "success",
     (
-      "color": $success100,
-      "background": $success10,
-      "border": $success05
+      "color": $ngx-notify-success100,
+      "background": $ngx-notify-success10,
+      "border": $ngx-notify-success05
     )
   );
   
   @include ngx-notify-style(
     "danger",
     (
-      "color": $danger100,
-      "background": $danger10,
-      "border": $danger05
+      "color": $ngx-notify-danger100,
+      "background": $ngx-notify-danger10,
+      "border": $ngx-notify-danger05
     )
   );
   
   @include ngx-notify-style(
     "warning",
     (
-      "color": $warning100,
-      "background": $warning10,
-      "border": $warning05
+      "color": $ngx-notify-warning100,
+      "background": $ngx-notify-warning10,
+      "border": $ngx-notify-warning05
     )
   );
   
   @include ngx-notify-style(
     "info",
     (
-      "color": $info100,
-      "background": $info10,
-      "border": $info05
+      "color": $ngx-notify-info100,
+      "background": $ngx-notify-info10,
+      "border": $ngx-notify-info05
     )
   );
 

@@ -1,15 +1,23 @@
-$success100: #155724;
-$success10: #d4edda;
-$success05: #c3e6cb;
+$ngx-notify-success100: #155724;
+$ngx-notify-success10: #d4edda;
+$ngx-notify-success05: #c3e6cb;
 
-$danger100: #721c24;
-$danger10: #f8d7da;
-$danger05: #f5c6cb;
+$ngx-notify-danger100: #721c24;
+$ngx-notify-danger10: #f8d7da;
+$ngx-notify-danger05: #f5c6cb;
 
-$warning100: #856404;
-$warning10: #fff3cd;
-$warning05: #ffeeba;
+$ngx-notify-warning100: #856404;
+$ngx-notify-warning10: #fff3cd;
+$ngx-notify-warning05: #ffeeba;
 
-$info100: #004085;
-$info10: #cce5ff;
-$info05: #b8daff;
+$ngx-notify-info100: #004085;
+$ngx-notify-info10: #cce5ff;
+$ngx-notify-info05: #b8daff;
+
+$ngx-notify-content-padding: .75rem 1.25rem;
+$ngx-notify-content-margin: .75rem 1rem;
+
+$ngx-notify-border-radius: .25rem;
+
+$ngx-notify-close-icon-width: 16px;
+$ngx-notify-close-icon-height: $ngx-notify-close-icon-width;

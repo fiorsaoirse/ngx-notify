@@ -1,5 +1,13 @@
 <ng-template #template>
-  <div>My message from template!</div>
+  <div class="template-message">
+    <div>My message from template!</div>
+    <a href="#">Google it!</a>
+    <ul>
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+    </ul>
+  </div>
 </ng-template>
 
 <h3>Plain text messages</h3>
@@ -13,13 +21,20 @@
 
 <h3>Plain text messages with manual close</h3>
 <div class="buttons-row">
-  <button>Success</button>
-  <button>Warning</button>
-  <button>Error</button>
-  <button>Info</button>
-  <button>Custom</button>
+  <button (click)="showPlainNotification(type.SUCCESS, true)">Success</button>
+  <button (click)="showPlainNotification(type.WARNING, true)">Warning</button>
+  <button (click)="showPlainNotification(type.DANGER, true)">Danger</button>
+  <button (click)="showPlainNotification(type.INFO, true)">Info</button>
+  <button (click)="showPlainNotification(type.CUSTOM, true)">Custom</button>
 </div>
 
 <h3>Template message</h3>
+<div class="buttons-row">
+  <button (click)="showTemplateNotification(type.SUCCESS)">Success</button>
+  <button (click)="showTemplateNotification(type.WARNING)">Warning</button>
+  <button (click)="showTemplateNotification(type.DANGER)">Error</button>
+  <button (click)="showTemplateNotification(type.INFO)">Info</button>
+  <button (click)="showTemplateNotification(type.CUSTOM)">Custom</button>
+</div>
 
 <h3>Different positions</h3>

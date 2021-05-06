@@ -142,7 +142,15 @@
             "production": {
               "tsConfig": "projects/another-one-notification/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "assets": [
+            "projects/another-one-notification/icons",
+            {
+              "glob": "**/*",
+              "input": "projects/another-one-notification/icons",
+              "output": "/assets"
+            }
+          ]
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

@@ -5,10 +5,19 @@
     </ng-container>
     <ng-container *ngIf="manualClose">
         <span class="ngx-notify-close"
-              (click)="close()"></span>
+              (click)="close()">
+            <ng-container *ngIf="!closeIconUrl; else iconTemplate">
+                <span class="ngx-notify-close-default-icon"></span>
+            </ng-container>
+        </span>
     </ng-container>
 </div>
 
 <ng-template #defaultTemplate>
     {{ content || ''}}
+</ng-template>
+
+<ng-template #iconTemplate>
+    <img class="ngx-notify-close-icon"
+         [src]="closeIconUrl">
 </ng-template>

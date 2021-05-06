@@ -1,5 +1,5 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { NgxNotifyService, NgxNotifyType,NgxNotifyConfig } from 'another-one-notification';
+import { NgxNotifyService, NgxNotifyType,NgxNotifyConfig, NgxNotifyPosition } from 'another-one-notification';
 
 @Component({
   selector: 'app-root',
@@ -46,11 +46,14 @@ export class AppComponent {
       }
   }
 
-  public showPlainNotification(type: NgxNotifyType): void {
+  public showPlainNotification(type: NgxNotifyType, manual: boolean = false): void {
       const index = this.getRandomIndex();
       const message = this.messages[index];
       const method = this.getMethodByType(type);
-      method(message);
+      method(message, {
+          manualClose: manual,
+          position: NgxNotifyPosition.TOP
+      });
   }
 
   public showTemplateNotification(type: NgxNotifyType): void {

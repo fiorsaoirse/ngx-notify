@@ -3,16 +3,18 @@ import {
     ChangeDetectionStrategy,
     Component,
     ElementRef,
+    Inject,
     Input,
     OnDestroy,
     OnInit,
+    Optional,
     Renderer2,
     TemplateRef,
     ViewChild,
-    ViewEncapsulation,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
+import { NGX_NOTIFY_CLOSE_ICON } from '../contracts/token';
 
 @Component({
     selector: 'ngx-notify',
@@ -46,7 +48,11 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
         return `ngx-notify-container-${position}`;
     }
 
-    constructor(private readonly elementRef: ElementRef, private readonly renderer: Renderer2) {
+    constructor(
+        private readonly elementRef: ElementRef,
+        private readonly renderer: Renderer2,
+        @Optional() @Inject(NGX_NOTIFY_CLOSE_ICON) readonly closeIconUrl: string
+    ) {
         this._destroy = new Subject<void>();
     }
 
