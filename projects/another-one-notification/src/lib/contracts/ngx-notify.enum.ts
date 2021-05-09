@@ -1,3 +1,6 @@
+/**
+ * Defines the color classes of your notification
+ */
 export enum NgxNotifyType {
     SUCCESS = 'success',
     WARNING = 'warning',
@@ -6,7 +9,10 @@ export enum NgxNotifyType {
     CUSTOM = 'custom',
 }
 
+/**
+ * Defines the position of your notification
+ */
 export enum NgxNotifyPosition {
     TOP = 'top',
-    BOTTOM = 'bottom'
+    BOTTOM = 'bottom',
 }

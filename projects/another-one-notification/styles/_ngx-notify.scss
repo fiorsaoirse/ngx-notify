@@ -12,14 +12,15 @@
       border: 1px solid transparent;
       border-radius: $ngx-notify-border-radius;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
     }
   
-    .fade-out {
-      animation: fadeOut linear;
-      -webkit-animation: fadeOut linear;
-      -moz-animation: fadeOut linear;
-      -o-animation: fadeOut linear;
+    .ngx-notify-fade-out {
+      animation: fadeOut ease-in;
+      -webkit-animation: fadeOut ease-in;
+      -moz-animation: fadeOut ease-in;
+      -o-animation: fadeOut ease-in;
       animation-fill-mode: forwards;
     }
   

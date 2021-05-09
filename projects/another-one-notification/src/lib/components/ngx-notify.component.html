@@ -3,7 +3,7 @@
     <ng-container *ngIf="isTemplate(content); else defaultTemplate">
         <ng-template *ngTemplateOutlet="content"></ng-template>
     </ng-container>
-    <ng-container *ngIf="manualClose">
+    <ng-container *ngIf="closeable">
         <span class="ngx-notify-close"
               (click)="close()">
             <ng-container *ngIf="!closeIconUrl; else iconTemplate">

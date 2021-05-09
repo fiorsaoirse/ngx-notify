@@ -13,9 +13,10 @@ import { Subscription } from 'rxjs';
 import { NgxNotifyComponent } from '../components/ngx-notify.component';
 import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
 import { NgxNotifyConfig } from '../contracts/ngx-notify.interface';
+import { NgxNotifyModule } from '../ngx-notify.module';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: NgxNotifyModule,
 })
 export class NgxNotifyService {
     private readonly DEFAULT_TIMEOUT: number;
@@ -39,7 +40,7 @@ export class NgxNotifyService {
     ) {
         this.currentNotification = null;
         this.currentNotificationSubscription = null;
-        this.DEFAULT_TIMEOUT = 8000;
+        this.DEFAULT_TIMEOUT = 12000;
     }
 
     public createSuccessNotification(content: string | TemplateRef<any>, config?: NgxNotifyConfig): void {
@@ -68,7 +69,7 @@ export class NgxNotifyService {
         config?: NgxNotifyConfig
     ): void {
         const timeout = config?.timeout ?? this.DEFAULT_TIMEOUT;
-        const manual = config?.manualClose;
+        const manual = config?.manualCloseOnly;
 
         // For current - ony one notification can be shown
         // TODO: or more?
@@ -83,7 +84,10 @@ export class NgxNotifyService {
         this.currentNotification.instance.type = type;
         this.currentNotification.instance.content = content;
         this.currentNotification.instance.extraClasses = config?.extraClasses;
-        this.currentNotification.instance.manualClose = config?.manualClose;
+        this.currentNotification.instance.closeable = config?.closeable;
+        if (!config?.manualCloseOnly) {
+            this.currentNotification.instance.timeout = timeout;
+        }
 
         this.applicationRef.attachView(this.currentNotification.hostView);
 

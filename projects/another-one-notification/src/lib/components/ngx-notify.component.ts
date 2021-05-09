@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     ElementRef,
+    HostBinding,
     Inject,
     Input,
     OnDestroy,
@@ -19,13 +20,9 @@ import { NGX_NOTIFY_CLOSE_ICON } from '../contracts/token';
 @Component({
     selector: 'ngx-notify',
     templateUrl: './ngx-notify.component.html',
-    // styleUrls: ['./ngx-notify.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    // encapsulation: ViewEncapsulation.None
 })
 export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
-    // small / medium / large ?
-
     @Input() public position: NgxNotifyPosition;
 
     @Input() public type: NgxNotifyType;
@@ -34,11 +31,25 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() public extraClasses?: string | string[];
 
-    @Input() public manualClose?: boolean;
+    @Input() public closeable?: boolean;
+
+    @Input() public timeout?: number;
+
+    @HostBinding('style.width') private _width: number;
+
+    @Input() public set width(value: string | number) {
+        if (typeof value === 'number') {
+            this._width = value;
+        } else {
+            this._width = Number.parseInt(value, 10) ?? null;
+        }
+    }
 
     @ViewChild('contentContainer', { read: ElementRef }) private readonly contentContainer: ElementRef;
 
     private readonly _destroy: Subject<void>;
+
+    private static readonly FADE_OUT_CLASS = 'ngx-notify-fade-out';
 
     private static getColorClass(type: NgxNotifyType): string {
         return `ngx-notify-content-${type}`;
@@ -69,6 +80,15 @@ export class NgxNotifyComponent implements OnInit, AfterViewInit, OnDestroy {
     public ngAfterViewInit(): void {
         const colorClass = NgxNotifyComponent.getColorClass(this.type);
         this.renderer.addClass(this.contentContainer.nativeElement, colorClass);
+
+        if (this.timeout) {
+            this.renderer.addClass(this.contentContainer.nativeElement, NgxNotifyComponent.FADE_OUT_CLASS);
+            this.renderer.setStyle(
+                this.contentContainer.nativeElement,
+                'animation-duration',
+                `${this.timeout / 1000}s`
+            );
+        }
     }
 
     public ngOnDestroy(): void {

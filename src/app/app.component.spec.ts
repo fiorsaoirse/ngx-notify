@@ -1,31 +1,42 @@
-import { TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { NgxNotifyModule, NgxNotifyType } from 'another-one-notification';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
+    let fixture: ComponentFixture<AppComponent>;
+    let applicationBody: DebugElement | null;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [NgxNotifyModule],
+            declarations: [AppComponent],
+        }).compileComponents();
 
-  it(`should have as title 'another-one-notification-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('another-one-notification-app');
-  });
+        fixture = TestBed.createComponent(AppComponent);
+        applicationBody = fixture.debugElement.parent;
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('another-one-notification-app app is running!');
-  });
+    it('should create the app', () => {
+        const app = fixture.componentInstance;
+        expect(app).toBeTruthy();
+    });
+
+    it(`should have as title 'another-one-notification-app'`, () => {
+        const app = fixture.componentInstance;
+        expect(app.title).toEqual('another-one-notification-app');
+    });
+
+    describe('should create success notification', () => {
+        it('and dissapear after 1 sec', () => {
+            expect(applicationBody).toBeTruthy();
+            expect(applicationBody!.query(By.css('.ngx-notify-container'))).toBeFalsy();
+
+            fixture.componentInstance.showPlainNotification(NgxNotifyType.SUCCESS);
+            fixture.detectChanges();
+
+            expect(applicationBody!.query(By.css('.ngx-notify-container'))).toBeTruthy();
+        });
+    });
 });
