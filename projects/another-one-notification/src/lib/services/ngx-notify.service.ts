@@ -69,7 +69,6 @@ export class NgxNotifyService {
         config?: NgxNotifyConfig
     ): void {
         const timeout = config?.timeout ?? this.DEFAULT_TIMEOUT;
-        const manual = config?.manualCloseOnly;
 
         // For current - ony one notification can be shown
         // TODO: or more?
@@ -84,7 +83,7 @@ export class NgxNotifyService {
         this.currentNotification.instance.type = type;
         this.currentNotification.instance.content = content;
         this.currentNotification.instance.extraClasses = config?.extraClasses;
-        this.currentNotification.instance.closeable = config?.closeable;
+        this.currentNotification.instance.closeable = config?.manualCloseOnly || config?.closeable;
         if (!config?.manualCloseOnly) {
             this.currentNotification.instance.timeout = timeout;
         }
@@ -105,7 +104,7 @@ export class NgxNotifyService {
             this.currentNotificationSubscription = null;
         });
 
-        if (!manual) {
+        if (!config?.manualCloseOnly) {
             this.timerId = window.setTimeout(() => {
                 this.currentNotification?.destroy();
             }, timeout);

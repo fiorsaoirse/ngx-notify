@@ -47,21 +47,23 @@ export class AppComponent {
         }
     }
 
-    public showPlainNotification(type: NgxNotifyType, manual: boolean = false): void {
+    public showPlainNotification(type: NgxNotifyType, manual: boolean = false, config?: NgxNotifyConfig): void {
         const index = this.getRandomIndex();
         const message = this.messages[index];
         const method = this.getMethodByType(type);
         method(message, {
-            manualCloseOnly: manual,
-            position: NgxNotifyPosition.TOP,
+            ...(config ?? {}),
+            manualCloseOnly: config?.manualCloseOnly ?? manual,
+            position: config?.position ?? NgxNotifyPosition.TOP,
         });
     }
 
-    public showTemplateNotification(type: NgxNotifyType, manual: boolean = false): void {
+    public showTemplateNotification(type: NgxNotifyType, manual: boolean = false, config?: NgxNotifyConfig): void {
         const method = this.getMethodByType(type);
         method(this.template, {
-            manualCloseOnly: manual,
-            position: NgxNotifyPosition.TOP,
+            ...(config ?? {}),
+            manualCloseOnly: config?.manualCloseOnly ?? manual,
+            position: config?.position ?? NgxNotifyPosition.TOP,
         });
     }
 

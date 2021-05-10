@@ -28,6 +28,7 @@
       cursor: pointer;
       display: flex;
       margin-left: auto;
+      align-self: baseline;
             
       .ngx-notify-close-default-icon {
         width: $ngx-notify-close-icon-width;

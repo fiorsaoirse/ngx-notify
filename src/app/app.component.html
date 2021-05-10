@@ -15,7 +15,8 @@
   <button (click)="showPlainNotification(type.SUCCESS)">Success</button>
   <button (click)="showPlainNotification(type.WARNING)">Warning</button>
   <button (click)="showPlainNotification(type.DANGER)">Danger</button>
-  <button (click)="showPlainNotification(type.INFO)">Info</button>
+  <button (click)="showPlainNotification(type.INFO, false)">Info with close
+    button</button>
   <button (click)="showPlainNotification(type.CUSTOM)">Custom</button>
 </div>
 
@@ -31,7 +32,7 @@
 <h3>Template message</h3>
 <div class="buttons-row">
   <button (click)="showTemplateNotification(type.SUCCESS)">Success</button>
-  <button (click)="showTemplateNotification(type.WARNING)">Warning</button>
+  <button (click)="showTemplateNotification(type.WARNING, true)">Warning</button>
   <button (click)="showTemplateNotification(type.DANGER)">Error</button>
   <button (click)="showTemplateNotification(type.INFO)">Info</button>
   <button (click)="showTemplateNotification(type.CUSTOM)">Custom</button>
