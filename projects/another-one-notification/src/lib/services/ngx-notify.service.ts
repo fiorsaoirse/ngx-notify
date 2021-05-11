@@ -36,7 +36,7 @@ export class NgxNotifyService {
         private readonly injector: Injector,
         private readonly applicationRef: ApplicationRef,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
-        @Inject(DOCUMENT) private readonly document: Document
+        @Inject(DOCUMENT) private readonly document: any
     ) {
         this.currentNotification = null;
         this.currentNotificationSubscription = null;
@@ -111,6 +111,6 @@ export class NgxNotifyService {
         }
 
         const rootNode = NgxNotifyService.getComponentRootNode(this.currentNotification);
-        this.document.body.appendChild(rootNode);
+        (this.document as Document).body.appendChild(rootNode);
     }
 }

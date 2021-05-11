@@ -7,7 +7,12 @@ This is a simple tiny Angular Library that lets you create notifications at the 
 ### Installation
 
 1. Run `npm install another-one-notification --save` in terminal
-2. Import `NgxNotifyModule` to your application module.
+2. Import `NgxNotifyModule` into your application module.
+3. Import another-one-notification styles into your styles.scss
+
+```
+@import "another-one-notification";
+```
 
 ```
 import { NgxNotifyModule } from 'another-one-notification';

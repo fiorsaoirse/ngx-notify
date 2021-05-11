@@ -1,11 +1,12 @@
 {
   "name": "another-one-notification-app",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build-lib": "ng build another-one-notification & npm run build-lib-styles",
+    "build-lib:prod": "ng build another-one-notification --prod & npm run build-lib-styles",
     "build-lib-styles": "scss-bundle -e \"./projects/another-one-notification/styles/main.scss\" -o \"./dist/another-one-notification/styles/main.scss\"",
     "build-lib:watch": "ng build another-one-notification --watch",
     "build-lib-styles:watch": "scss-bundle -e \"./projects/another-one-notification/styles/main.scss\" -o \"./dist/another-one-notification/styles/main.scss\" -w \"./projects/another-one-notification/styles\"",
@@ -19,6 +20,10 @@
     "lint:ts": "tsc --noEmit",
     "lint:ts:w": "npm run lint:ts -- --watch",
     "lint:scss": "stylelint ./projects/**/*.scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fiorsaoirse/ngx-notify.git"
   },
   "private": true,
   "dependencies": {
