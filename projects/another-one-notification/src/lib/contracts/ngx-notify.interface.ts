@@ -22,8 +22,3 @@ export interface NgxNotifyConfig {
     width?: number | string;
     position: NgxNotifyPosition;
 }
-
-export interface NgxNotifyError {
-    property: string;
-    description: string;
-}
