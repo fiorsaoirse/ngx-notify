@@ -11,7 +11,7 @@ This is a simple tiny Angular Library that lets you create notifications at the 
 3. Import another-one-notification styles into your styles.scss
 
 ```
-@import "another-one-notification";
+@import "~another-one-notification/styles/main.scss";
 ```
 
 ```
