@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { NgxNotifyComponent } from '../components/ngx-notify.component';
 import { NgxNotifyPosition, NgxNotifyType } from '../contracts/ngx-notify.enum';
 import { NgxNotifyConfig } from '../contracts/ngx-notify.interface';
+import { WINDOW } from '../contracts/token';
 import { NgxNotifyModule } from '../ngx-notify.module';
 
 @Injectable({
@@ -36,7 +37,8 @@ export class NgxNotifyService {
         private readonly injector: Injector,
         private readonly applicationRef: ApplicationRef,
         private readonly componentFactoryResolver: ComponentFactoryResolver,
-        @Inject(DOCUMENT) private readonly document: any
+        @Inject(DOCUMENT) private readonly document: any,
+        @Inject(WINDOW) private readonly window: any
     ) {
         this.currentNotification = null;
         this.currentNotificationSubscription = null;
@@ -105,7 +107,7 @@ export class NgxNotifyService {
         });
 
         if (!config?.manualCloseOnly) {
-            this.timerId = window.setTimeout(() => {
+            this.timerId = this.window.setTimeout(() => {
                 this.currentNotification?.destroy();
             }, timeout);
         }
